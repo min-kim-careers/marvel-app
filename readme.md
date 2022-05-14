@@ -19,12 +19,3 @@ You can shorten the startup time by going to src/main/java/major_project/model/m
 - BREAD CRUMB BAR - Click the relevant bread crumbs to explore recent history. The bar can be panned left and right using the mouse once filled up.
 
 - SEND REPORT BUTTON - Click this to open up a form to send an email of the currently viewed information in a rearranged format. All fields must be filled before clicking submit. There will be a feedback before closing on whether the report was successfully or not.
-
-
-### QUESTIONS
-
-1. Could I get some tips on how to mock and test my online parsers? Not sure how to when(Request.getResponse()).thenReturn(something) since MarvelOnlineParser is using Request as a static class.
-
-2. I tried to apply an MVC architecture. Is it close?
-
-3. Can I implement all the handler actions from the view side inside the controller? Is that what a controller does?
