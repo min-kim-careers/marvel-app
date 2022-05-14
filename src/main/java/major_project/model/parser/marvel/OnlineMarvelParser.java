@@ -2,6 +2,8 @@ package major_project.model.parser.marvel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -18,7 +20,6 @@ public class OnlineMarvelParser implements MarvelParser {
     private final String hostUrl = "https://gateway.marvel.com";
     
     private final Gson gson = new Gson();
-    private final Request request = new Request();
     private final CacheManager cacheManager;
 
     public OnlineMarvelParser() {
@@ -37,14 +38,16 @@ public class OnlineMarvelParser implements MarvelParser {
                 tempUrl += "?";
             }
             tempUrl += "limit=" + String.valueOf(limit) + "&offset=" + String.valueOf(offset) + "&" + MarvelAuthenticator.getAuthKey();
-            JsonObject response = request.getResponse(tempUrl).getAsJsonObject().get("data").getAsJsonObject();
-
-            if (response.get("total").getAsInt() < offset) {
-                break;
-            }
-
-            JsonArray resultArray = response.get("results").getAsJsonArray();
-            ls.add(resultArray);
+            try {
+                JsonObject response = new Request(tempUrl).get().getAsJsonObject().get("data").getAsJsonObject();
+                if (response.get("total").getAsInt() < offset) {
+                    break;
+                }
+                JsonArray resultArray = response.get("results").getAsJsonArray();
+                ls.add(resultArray);
+            } catch (Exception e) {
+                CompletableFuture.runAsync(() -> System.out.println(e));
+            } 
             offset += 100;
         }
         return ls;
