@@ -1,17 +1,78 @@
-# HOW TO USE
+# Marvel-App
 
-- CHARACTER SEARCH BAR - **press ENTER to get suggestions based on current input.** Will already cache the characters searched for suggestions so searching those characters will ask to hit the cache. If an exact character name is directly entered, it will request info straight from API as it won't have cached anything.
+This is a Java application that allows users to search for information about Marvel characters and comics. It utilizes caching mechanisms for improved performance and incorporates features like report sending via email and background music control.
 
-- SEARCH BUTTON -  **Click this button to search for information on the entered character.** It will ask to hit cache if it already exists, otherwise it will search the API.
+## Structure
 
-- COLLECTION LIST - **DOUBLE CLICK** to go browse that collection.
+The project is organized into the following directories:
 
-- BREAD CRUMB BAR - **Click the relevant bread crumbs to explore recent history**. The bar can be scrolled left and right using the mouse once filled up.
+- `App.java`: Main class to run the application.
+- `model`: Contains classes related to data models and API interaction.
+  - `AppEngine.java`: Core engine managing API requests and caching.
+  - `Request.java`: Class for handling API requests.
+  - `cache`: Subdirectory for caching-related classes.
+    - `CacheManager.java`: Manages caching operations.
+    - `CharacterCache.java`: Handles caching of character data.
+    - `ComicCache.java`: Handles caching of comic data.
+  - `parser`: Subdirectory for parsing-related classes.
+    - `marvel`: Subdirectory for Marvel API parsing.
+    - `sendgrid`: Subdirectory for SendGrid API parsing.
+- `view`: Contains classes related to the user interface.
+  - Various `.java` files for different UI components.
 
-- SEND REPORT BUTTON - **Click this to open up a form to send an email of the currently viewed information in a rearranged format.** All fields must be filled before clicking submit. There will be a feedback before closing on whether the report was successfully or not.
+## How to Use
 
-- HELP MENU BAR - Click to show an About alert dialog with details about application.
+- **Character Search Bar**: Press ENTER for suggestions based on input. Cached characters will prompt to use cache. Entering exact character names retrieves data from the API.
+- **Search Button**: Click to search for character information. Utilizes cache if available, otherwise queries the API.
+- **Collection List**: Double-click to browse a collection.
+- **Bread Crumb Bar**: Click crumbs to explore recent history. Scroll left/right if bar fills up.
+- **Send Report Button**: Opens a form to send character information via email. All fields must be filled for submission.
+- **Help Menu Bar**: Displays application details.
+- **Play/Pause BGM Button**: Controls background music playback.
+- **Clear Cache Button**: Clears all cached data.
 
-- PLAY/PAUSE BGM BUTTON - Does what it says. Repeats the song on finish.
 
-- CLEAR CACHE BUTTON -  Also does what it says. Wipes the cache of all data.
+# Installation Guide
+
+Follow these steps to set up and run the Marvel-App project on your local machine:
+
+## Prerequisites
+
+- Java Development Kit (JDK) 17 or later installed on your system.
+- Gradle build tool installed.
+
+## Steps
+
+1. **Clone the Repository**: Clone the Marvel-App repository to your local machine using Git.
+
+    ```bash
+    git clone <repository_url>
+    ```
+
+2. **Navigate to Project Directory**: Open a terminal and change your directory to the root of the cloned repository.
+
+    ```bash
+    cd marvel-app
+    ```
+
+3. **Configure Gradle**: Open the `build.gradle` file in a text editor and ensure that the dependencies and plugins are correctly configured as shown in the provided snippet.
+
+4. **Build the Project**: Run the following Gradle command to build the project.
+
+    ```bash
+    gradle build
+    ```
+
+5. **Run the Application**: Execute the following Gradle command to run the application.
+
+    ```bash
+    gradle run
+    ```
+
+6. **Explore the Application**: Once the application is running, you can interact with it using the provided user interface features.
+
+7. **(Optional) Run Tests**: If you want to run the tests, use the following Gradle command.
+
+    ```bash
+    gradle test
+    ```
